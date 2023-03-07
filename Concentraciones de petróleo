@@ -1,0 +1,30 @@
+# Universidad Central del Ecuador
+# Carrera de Petróleos
+# Materia: Facilidades de Producción
+# Integrantes: Vanessa Chamorro, Olga Rumiguano
+
+# Librerias
+import numpy as np 
+
+# Datos
+Qf=int(input("Ingrese los barriles de fluido producidos por dia: "))
+Qo=int(input("Ingrese los barriles de petróleo producidos por dia: "))
+t=int(input("Ingrese el tiempo que dura el bombeo del biocida en horas: "))
+gal_bio=int(input("Ingrese los galones de biocida bombeados: "))
+long=int(input("Longitud en kilómetros de la tubería del wellpad a una estación CPF: "))
+d=int(input("Diametro en pulgadas de la tubería: "))
+
+# Calcular los galones de agua 
+gwpt=(((Qf-Qo)/24*t)*42)+gal_bio 
+# Calcular la concentración de biosida    
+cbio=1000000*30/gwpt          
+# Calcular el tiempo de llegada del PIG si la producción se duplica.
+t_pig=((np.pi*((d/2)*(1/12))**2*(long*1000)*3.28/(2*Qf*5.61))*24)*60
+# Calcular los galones por día de inyección de antiescala
+gwpd=(Qf-Qo)*42
+gantiescala=gwpd*30/(1000000-30)
+# Impresión de resultados
+print("La concentración de biocida si se bombea ",gal_bio," galones en ",t," horas es ",cbio,"ppm")
+print("El tiempo de llegada del PIG si la producción total se duplica es ",t_pig," minutos")
+print("Los galones por día que se debe inyectar de antiescala es ",gantiescala," gal/dia")
+
